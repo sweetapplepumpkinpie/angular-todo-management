@@ -1,0 +1,43 @@
+<div class="text-center my-5 px-20">
+  <div class="relative py-4 mb-2">
+    <h1>Todo list</h1>
+    <a
+      routerLink="/todos/create"
+      class="absolute bottom-0 rounded-lg right-0 py-2 px-5 bg-blue-400 text-white"
+      >New Todo</a
+    >
+  </div>
+  <div class="flex">
+    <table class="table w-full text-left border border-slate-500">
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <td class="py-3 px-6">Title</td>
+          <td class="py-3 px-6">Content</td>
+          <td width="400" class="py-3 px-6">...</td>
+        </tr>
+      </thead>
+      <tbody class="text-white" *ngIf="todos.length">
+        <tr
+          *ngFor="let todo of todos"
+          class="border-b dark:bg-gray-800 dark:border-gray-700"
+        >
+          <td class="py-3 px-6">{{ todo.title }}</td>
+          <td class="py-3 px-6">{{ todo.content }}</td>
+          <td>
+            <a routerLink="/todos/{{ todo.id }}" class="mr-2 tw-btn-primary"
+              >Edit</a
+            >
+            <button class="tw-btn-danger" (click)="openModal(todo.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tr *ngIf="!todos.length">
+        <td col="3">There is no todo.</td>
+      </tr>
+    </table>
+  </div>
+</div>

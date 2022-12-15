@@ -1,0 +1,77 @@
+<div class="text-center my-5 px-20">
+  <div class="relative py-4 mb-2">
+    <h1>{{ isNew ? "Create a new Todo" : "Edit the Todo" }}</h1>
+    <a
+      routerLink="/todos"
+      class="absolute bottom-0 rounded-lg right-0 py-2 px-5 bg-blue-400 text-white"
+    >
+      Todo list
+    </a>
+  </div>
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="text-xl">
+    <div>
+      <div class="flex justify-between">
+        <label for="title" class="block text-xl font-medium text-gray-700">
+          Title
+        </label>
+      </div>
+      <div class="mt-1">
+        <input
+          type="text"
+          name="title"
+          id="title"
+          class="block w-full p-4 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          placeholder="Urgent"
+          formControlName="title"
+          aria-describedby="title-optional"
+        />
+      </div>
+      <div
+        *ngIf="
+          checkoutForm.get('title')?.hasError('required') &&
+          (checkoutForm.get('title')?.dirty ||
+            checkoutForm.get('title')?.touched)
+        "
+        class="pl-4 text-red-600 text-sm text-left"
+      >
+        This field is required.
+      </div>
+    </div>
+    <div class="mt-4">
+      <div class="flex justify-between">
+        <label for="content" class="block text-xl font-medium text-gray-700">
+          Content
+        </label>
+      </div>
+      <div class="mt-1">
+        <input
+          type="text"
+          name="content"
+          id="content"
+          class="block w-full p-4 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          placeholder="Finish the urgent tasks."
+          formControlName="content"
+          aria-describedby="content-optional"
+        />
+      </div>
+      <div
+        *ngIf="
+          checkoutForm.get('content')?.hasError('required') &&
+          (checkoutForm.get('content')?.dirty ||
+            checkoutForm.get('content')?.touched)
+        "
+        class="pl-4 text-red-600 text-sm text-left"
+      >
+        This field is required.
+      </div>
+    </div>
+    <div class="text-center">
+      <button
+        class="button text-white w-full bg-slate-600 hover:bg-slate-900 mt-4 border border-gray-300 px-5 py-2 rounded-md"
+        type="submit"
+      >
+        {{ isNew ? "Create" : "Update" }}
+      </button>
+    </div>
+  </form>
+</div>
