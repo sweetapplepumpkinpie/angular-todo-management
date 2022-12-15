@@ -3,9 +3,9 @@ import { select, Store } from '@ngrx/store';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
-import { register } from './../store/actions/user.actions';
-import { IUserState } from './../store/reducers/user.reducers';
-import * as fromSelectors from './../store/selectors/user.selectors';
+import { register } from '../../store/actions/user.actions';
+import { IUserState } from '../../store/reducers/user.reducers';
+import * as fromSelectors from '../../store/selectors/user.selectors';
 
 @Component({
   selector: 'app-register',

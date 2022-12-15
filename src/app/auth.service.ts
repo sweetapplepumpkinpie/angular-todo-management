@@ -1,6 +1,7 @@
-import { ICredentials } from './models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+import { ICredentials } from './models/user';
 
 type TLoginResponse = {
   token: string;
@@ -18,5 +19,13 @@ export class AuthService {
 
   login(data: ICredentials) {
     return this.http.post('api/auth/login', data);
+  }
+
+  verify() {
+    return this.http.get('api/auth/verify');
+  }
+
+  getToken() {
+    return window.localStorage.getItem('token');
   }
 }
