@@ -7,7 +7,7 @@ export const verify = createAction('[User] Verify');
 
 export const verifySuccess = createAction(
   '[User] Verify success',
-  props<{ user: IUser }>()
+  props<{ user: IUser | undefined }>()
 );
 
 export const verifyFail = createAction('[User] Verify fail');
@@ -87,3 +87,4 @@ export const updateTodoSuccess = createAction(
   props<{ todo: ITodo }>()
 );
 export const updateTodoFail = createAction('[User] Update Todo fail');
+export const logout = createAction('[User] Logout');

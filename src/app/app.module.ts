@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { BsDropdownModule, BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 
 import { UserEffects } from './store/effects/user.effects';
 import { reducers } from './store/reducers/index';
@@ -20,6 +21,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { TodoListComponent } from './pages/todo-list/todo-list.component';
 import { TodoCreateComponent } from './pages/todo-create/todo-create.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { ModalComponent } from './components/modal/modal.component';
     TodoListComponent,
     TodoCreateComponent,
     ModalComponent,
+    SettingsComponent,
   ],
   imports: [
     AuthModule,
@@ -44,8 +47,9 @@ import { ModalComponent } from './components/modal/modal.component';
     StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot([UserEffects]),
     BrowserAnimationsModule,
+    BsDropdownModule,
   ],
-  providers: [BsModalService],
+  providers: [BsModalService, BsDropdownConfig],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

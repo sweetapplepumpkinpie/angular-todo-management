@@ -25,3 +25,11 @@ export const getTodo = createSelector(
   selectUserState,
   (user: fromUser.IUserState) => user.todo
 );
+export const getMe = createSelector(
+  selectUserState,
+  (user: fromUser.IUserState) => user.user
+);
+export const getLoginSuccess = createSelector(
+  selectUserState,
+  (user: fromUser.IUserState) => user.loginSuccess
+);

@@ -45,7 +45,6 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.isSuccess$.subscribe((isSuccess) => {
-      console.log(isSuccess);
       if (isSuccess) this.router.navigate(['/']);
     });
     this.isLoading$.subscribe((isLoading) => {
