@@ -9,8 +9,10 @@ export const userFeatureKey = 'user';
 export interface IUserState extends IUser {
   isLoading: boolean;
   success: boolean;
+  loginSuccess: boolean;
   todo: ITodo;
   todos: ITodo[];
+  user: IUser | undefined;
   isTodoLoading: boolean;
   error: INewUser;
   todoError: string;
@@ -20,8 +22,10 @@ export const initialState: IUserState = {
   email: '',
   name: '',
   todo: {},
+  user: undefined,
   isLoading: false,
   success: false,
+  loginSuccess: false,
   isTodoLoading: false,
   error: {},
   todos: [],
@@ -34,6 +38,7 @@ export const userReducer = createReducer(
     ...state,
     error: {},
     success: false,
+    loginSuccess: false,
     isLoading: true,
   })),
   on(fromActions.loginSuccess, (state, { token }) => {
@@ -41,6 +46,7 @@ export const userReducer = createReducer(
     return {
       ...state,
       success: true,
+      loginSuccess: true,
       isLoading: false,
     };
   }),
@@ -112,5 +118,20 @@ export const userReducer = createReducer(
   on(fromActions.getTodoFail, (state) => ({
     ...state,
     isTodoLoading: false,
-  }))
+  })),
+  on(fromActions.verifySuccess, (state, { user }) => {
+    return {
+      ...state,
+      user,
+      isTodoLoading: false,
+    };
+  }),
+  on(fromActions.logout, (state) => {
+    localStorage.removeItem('token');
+    return {
+      ...state,
+      user: undefined,
+      loginSuccess: false,
+    };
+  })
 );

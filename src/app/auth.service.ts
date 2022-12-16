@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { ICredentials } from './models/user';
-
-type TLoginResponse = {
-  token: string;
-};
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +16,11 @@ export class AuthService {
 
   login(data: ICredentials) {
     return this.http.post('api/auth/login', data);
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    return new Observable();
   }
 
   verify() {

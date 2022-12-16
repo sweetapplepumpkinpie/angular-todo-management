@@ -2,8 +2,11 @@
   <div class="text-center py-4 px-4">
     <a routerLink="/" class="text-xl text-white">Todo Management</a>
   </div>
-  <div class="flex items-center mr-4">
+  <div class="flex items-center mr-4" *ngIf="!user">
     <a routerLink="/login" class="text-lg text-white mr-4">Login</a>
     <a routerLink="/register" class="text-lg text-white">Register</a>
+  </div>
+  <div class="flex items-center mr-4" *ngIf="user">
+    <app-settings email="{{ user.email }}"></app-settings>
   </div>
 </div>

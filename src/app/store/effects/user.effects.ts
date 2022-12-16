@@ -1,5 +1,4 @@
 import { ITodo } from './../../models/todo';
-import { verify, getTodos, createTodo } from './../actions/user.actions';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
@@ -16,7 +15,7 @@ export class UserEffects {
       ofType(fromActions.verify),
       mergeMap((action) => {
         return this.authService.verify().pipe(
-          map((user: any) => fromActions.verifySuccess(user)),
+          map((user: any) => fromActions.verifySuccess({ user })),
           catchError((error) => of(fromActions.verifyFail()))
         );
       })
